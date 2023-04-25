@@ -1,11 +1,11 @@
-import "./App.css";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>WEATHER APP</h1>
-    </div>
+const API_KEY = process.env.REACT_APP_API_KEY;
+const BASE_URL = "https://api.openweathermap.org/data/2.5/";
+
+export const getWeatherData = async (city) => {
+  const { data } = await axios.get(
+    `${BASE_URL}weather?q=${city}&appid=${API_KEY}&units=metric`
   );
-}
-
-export default App;
+  return data;
+};
